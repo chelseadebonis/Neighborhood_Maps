@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <!-- Normalize.css for better cross-browser consistency -->
@@ -17,11 +17,11 @@
   <header>
     <!-- Beginning nav -->
     <nav>
-      <h1><a aria-label="Review Home" tabindex="0" href="/">Restaurant Reviews</a></h1>
+      <h1><a aria-label="Review Home" role="banner" tabindex="0" href="/">Restaurant Reviews</a></h1>
     </nav>
     <!-- Beginning breadcrumb -->
-    <ul id="breadcrumb" >
-      <li><a aria-label="navigation" tabindex="0" href="/">Home</a></li>
+    <ul aria-label="ul" role="navigation" id="breadcrumb" >
+      <li><a tabindex="0" href="/">Home</a></li>
     </ul>
     <!-- End breadcrumb -->
     <!-- End nav -->
@@ -33,11 +33,11 @@
     <!-- Beginning restaurant -->
     <section id="restaurant-container">
       <h1 id="restaurant-name"></h1>
-      <img id="restaurant-img">
+      <img alt="restaurant image" id="restaurant-img">
       <p id="restaurant-cuisine"></p>
       <p id="restaurant-address"></p>
         <!-- Beginning map -->
-      <section aria-label="Location on map" tabindex="0" id="map-container">
+      <section aria-label="Location on map" role="application" tabindex="0" id="map-container">
         <div id="map"></div>
       </section>
       <!-- end of map -->
