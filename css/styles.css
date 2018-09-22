@@ -34,7 +34,7 @@ a img{
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: Arial, Helvetica, sans-serif;
-  margin: 0 0 10px;
+  margin: 0 0 0 0px;
 }
 
 h2 {
@@ -64,7 +64,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 /* ====================== Navigation ====================== */
 nav {
   width: 100%;
-	max-width: 100%;
+	max-width: 1100px;
   height: 80px;
   background-color: #252831;
   text-align: center;
@@ -72,7 +72,8 @@ nav {
 }
 
 nav h1 {
-  margin: auto;
+  margin-left: auto;
+	margin-right: auto;
 }
 
 nav h1 a {
@@ -83,14 +84,11 @@ nav h1 a {
   text-transform: uppercase;
 }
 #breadcrumb {
-    padding: 10px 0px 16px 0px;
-    list-style: none;
-    background-color: #eee;
-    font-size: 17px;
-    margin: 0;
-    width: 100%;
-		max-width: 100%;
-		text-align: center;
+margin-top: 0px;
+background-color: white;
+text-align: center;
+width: 100%;
+max-width: 1100px;
 }
 
 /* Display list items side by side */
@@ -380,19 +378,35 @@ li {
 	margin: 0px 100px 0px 0px;
 	}
 }
+
 @media only screen and (min-width: 1100px) {
 	#maincontent {
 		width: 1100px;
-		max-width: 1100px;
 	}
 	nav {
-		width: 1101px;
-		margin: auto;
+		width: 1100px;
+		margin-left: auto;
+		margin-right: auto;
+		display: flex;
+	}
+	#headbar {
+	position: fixed;
+}
+	#breadcrumb {
+		margin-top: 100px;
+	}
+
+	h1 {
+		width: 1100px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.inside {
+		width: 1100px;
 	}
 	#breadcrumb {
-		width: 1101px;
+		width: 1100px;
 	}
-]
 	restaurant-img {
 		width: 70%;
 	}
