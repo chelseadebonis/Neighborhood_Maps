@@ -1,4 +1,4 @@
-const cacheName = 'my-site-cache-v1';
+const cache_name = 'my-site-cache-v1';
 
 const urlsToCache = [
   '/',
@@ -36,7 +36,7 @@ console.log('Service worker is registered');
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open(cacheName)
+    caches.open(cache_name)
     .then(function(cache) {
       console.log('opened cache');
       return cache.addAll(urlsToCache);
@@ -62,7 +62,7 @@ self.addEventListener('fetch', function(event) {
 
             const responseToCache = response.clone();
 
-            caches.open(cacheName)
+            caches.open(cache_name)
             .then(function(cache) {
               cache.put(event.request, responseToCache);
             });
@@ -74,12 +74,14 @@ self.addEventListener('fetch', function(event) {
   });
 
 self.addEventListener('activate', function(event) {
-  const cacheList = ['pages-cache-v1', 'pages-cache-v2'];
+
+  let cache_list = [cache_name];
+
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.map(function(cacheName) {
-          if (cacheList.indexOf(cacheName) === -1) {
+          if (cache_list.indexOf(cacheName) === -1) {
             return caches.delete(cacheName);
           }
         })

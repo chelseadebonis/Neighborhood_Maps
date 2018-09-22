@@ -233,12 +233,7 @@ li {
 
 /* ====================== Restaurant Details ====================== */
 @media only screen and (max-width: 450px) {
-	#map {
-		display: none;
-	}
-	#map-container {
-		display: none;
-	}
+
 	#restaurant-name {
 		width: 100%;
 		margin: 0;
@@ -377,6 +372,36 @@ li {
 	#footer {
 	margin: 0px 100px 0px 0px;
 	}
+}
+
+@media only screen and (min-width: 700px) {
+	/*#restaurants-list {
+		display: inline-flex;
+		width: 100%;
+		flex-wrap: wrap;
+		height: 400px;
+		text-align: center;
+		flex-flow: column wrap;
+	}
+	#restaurants-list li {
+		width: 20%;
+		height: 500px;
+		flex-flow: row wrap;
+		margin-left: auto;
+		margin-right: auto;
+		flex-wrap: wrap;
+	}
+
+*/
+	#restaurants-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fill,minmax(280px, 1fr));
+	}
+	#restaurants-list li {
+		border: 2px solid #ccc;
+		border-top: 0px;
+	}
+
 }
 
 @media only screen and (min-width: 1100px) {
