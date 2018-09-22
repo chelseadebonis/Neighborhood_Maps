@@ -1,6 +1,6 @@
 const cacheName = 'my-site-cache-v1';
 
-const cacheList = [
+const urlsToCache = [
   '/',
   '/index.html',
   '/restaurant.html',
@@ -31,39 +31,59 @@ console.log('Service worker is registered');
   //cache files
   //confirm whether required caches
 //fetch events
-  //clone since cant be used again
+  //clone since cant be used
+//activate
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(cacheName)
     .then(function(cache) {
       console.log('opened cache');
-      return cache.addAll(cacheList);
+      return cache.addAll(urlsToCache);
     })
   );
 });
 
 self.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.match(event.request).then(function(response) {
+    caches.match(event.request)
+    .then(function(response) {
       if (response) {
         console.log('found event in cache');
         return response;
       }
-        else {
-          const fetchRequest = event.request.clone();
-          const responseToCache = response.clone();
-          console.log('fetching');
-          return fetch(fetchRequest).then(function(response) {
-            caches.open(cacheName).then(function(cache) {
+      const fetchRequest = event.request.clone();
+
+        return fetch(fetchRequest).then(
+          function(response) {
+            if(!response || response.status !==200 || response.type !== 'basic') {
+              return response;
+            }
+
+            const responseToCache = response.clone();
+
+            caches.open(cacheName)
+            .then(function(cache) {
               cache.put(event.request, responseToCache);
             });
             return response;
-          })
-          .catch(function(err) {
-            console.error('error');
-          });
-        }
+          }
+        );
+      })
+    );
+  });
+
+self.addEventListener('activate', function(event) {
+  const cacheList = ['pages-cache-v1', 'pages-cache-v2'];
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.map(function(cacheName) {
+          if (cacheList.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
     })
   );
 });
